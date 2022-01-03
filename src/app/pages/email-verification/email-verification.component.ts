@@ -23,6 +23,13 @@ export class EmailVerificationComponent implements OnInit {
     }
   }
 
+  onLogoutClick() {
+    this.auth.signOut();
+    this.router.navigate([""])
+  }
+  loggedIn() {
+  return this.auth.isSignedIn();
+}
   onResendClick() {
     this.auth.sendVerificationEmail();
   }

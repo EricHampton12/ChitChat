@@ -2,4 +2,6 @@
     <h1>Your Email is Not Verified</h1>
     <button (click)="onResendClick()" 
     mat-flat-button>Resend Verification Email</button>
+    <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="nav-bar-items">Logout</div>
+
 </div>
