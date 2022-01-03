@@ -19,6 +19,42 @@ firebasetsAuth: FirebaseTSAuth;
 
   }
 
+  onLogin(
+    loginEmail: HTMLInputElement,
+    loginPassword: HTMLInputElement
+  ){
+    let email = loginEmail.value;
+    let password = loginPassword.value;
+
+    if(this.isNotEmpty(email) && this.isNotEmpty(password)) {
+      this.firebasetsAuth.signInWith( {
+        email: email,
+        password: password,
+        onComplete: (uc) => {
+          alert("Logged In")
+        },
+        onFail: (err) => {
+          alert(err);
+        }
+      }
+      )
+    }
+  }
+
+  onResetClick(resetEmail: HTMLInputElement) {
+    let email = resetEmail.value;
+    if(this.isNotEmpty(email)) {
+      this.firebasetsAuth.sendPasswordResetEmail(
+        {
+          email: email,
+          onComplete: (err) => {
+            alert(`Reset email sent to ${email}`);
+          }
+        }
+      );
+    }
+  }
+
   onRegisterClick(
     registerEmail: HTMLInputElement,
     registerPassword: HTMLInputElement,

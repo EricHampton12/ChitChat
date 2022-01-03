@@ -4,9 +4,10 @@
             <mat-card-title>{{getStateText()}}</mat-card-title>
         </mat-card-header>
         <div *ngIf="isLoginState()">
-            <input placeholder="Email"/>
-            <input placeholder="Password" type="password" />
-            <button mat-raised-button color="accent">Login</button>
+            <input #loginEmail placeholder="Email"/>
+            <input #loginPassword placeholder="Password" type="password" />
+            <button (click)="onLogin(loginEmail, loginPassword)"
+            mat-raised-button color="accent">Login</button>
         </div>
         <div *ngIf="isRegisterState()">
             <input #registerEmail placeholder="Email">
@@ -20,8 +21,9 @@
             mat-flat-button color="accent">Create</button>
         </div>
         <div *ngIf="isForgotPasswordState()">
-            <input placeholder="Email">
-            <button mat-flat-button color="accent">Reset</button>
+            <input #resetEmail placeholder="Email">
+            <button (click)="onResetClick(resetEmail)"
+            mat-flat-button color="accent">Reset</button>
 
         </div>
        
