@@ -16,12 +16,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { PostFeedComponent } from './pages/home/post-feed/post-feed.component';
+import { ProfileComponent } from './tools/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AuthenticatorComponent,
-    PostFeedComponent
+    PostFeedComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
