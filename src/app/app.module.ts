@@ -12,12 +12,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
+import { PostFeedComponent } from './pages/home/post-feed/post-feed.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AuthenticatorComponent
+    AuthenticatorComponent,
+    PostFeedComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { AuthenticatorComponent } from './tools/authenticator/authenticator.comp
     BrowserAnimationsModule,
     MatButtonModule,
     MatBottomSheetModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

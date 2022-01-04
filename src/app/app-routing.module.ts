@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { PostFeedComponent } from './pages/home/post-feed/post-feed.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
+  {path: "postfeed", component: PostFeedComponent },
   {path: "**", component: HomeComponent}
 ];
 
