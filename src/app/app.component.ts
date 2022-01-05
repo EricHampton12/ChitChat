@@ -26,9 +26,9 @@ constructor(private loginSheet: MatBottomSheet,
           whenSignedOut: user => {
           },
 
-          whenSignedInAndEmailNotVerified: user => {
-            this.router.navigate(["emailVerification"])
-          },
+          // whenSignedInAndEmailNotVerified: user => {
+          //   this.router.navigate(["emailVerification"])
+          // },
 
           whenSignedInAndEmailVerified: user => {
 
