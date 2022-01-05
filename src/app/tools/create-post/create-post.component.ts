@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatCard } from '@angular/material/card';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { FirebaseTSStorage } from 'firebasets/FirebaseTSStorage/firebaseTSStorage';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Component({
   selector: 'app-create-post',
@@ -8,10 +10,29 @@ import { MatCard } from '@angular/material/card';
 })
 export class CreatePostComponent implements OnInit {
   selectedImageFile: File | undefined;
-
+  auth = new FirebaseTSAuth();
+  firestore = new FirebaseTSFirestore();
+  storage = new FirebaseTSStorage();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onPostClick(commentInput: HTMLTextAreaElement) {
+    let comment = commentInput.value;
+    let postId = this.firestore.genDocId
+    this.storage.upload(
+      {
+        uploadName: "upload Image Post",
+        path: ["Posts", "Post1", "image"],
+        data: {
+          data: this.selectedImageFile
+        },
+        onComplete: (downloadUrl) => {
+          alert(downloadUrl);
+        }
+      }
+    );
   }
 
   onPhotoSelected(photoSelector: HTMLInputElement) {
