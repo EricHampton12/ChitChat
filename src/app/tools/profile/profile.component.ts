@@ -8,7 +8,7 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @input() show:boolean;
+  show: boolean = false;
 
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
     let description = descriptionInput.value;
     this.firestore.create(
       {
-        path: ["Users", this.auth.getAuth().currentUser.uid],
+        path: ["Users"],
         data: {
 
         },
@@ -46,3 +46,7 @@ export class ProfileComponent implements OnInit {
   }
 
 }
+function input() {
+  throw new Error('Function not implemented.');
+}
+

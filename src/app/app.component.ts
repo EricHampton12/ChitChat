@@ -15,6 +15,8 @@ export class AppComponent {
   auth= new FirebaseTSAuth();
   fireStore = new FirebaseTSFirestore();
   userHasProfile = true;
+  userDocument!: userDocument;
+  isLoggedIn: boolean = false;
 
 constructor(private loginSheet: MatBottomSheet,
     private router: Router
@@ -50,7 +52,9 @@ constructor(private loginSheet: MatBottomSheet,
       {
         name: "Getting Documnets",
         path: ["Users", this.auth.getAuth().currentUser.uid],
-        onUpdate: (results) => {
+        onUpdate: (result) => {
+          this.userDocument = <userDocument>result.data();
+
           this.userHasProfile = result.exists;
         }
       }
@@ -68,4 +72,9 @@ constructor(private loginSheet: MatBottomSheet,
   onLoginClick() {
     this.loginSheet.open(AuthenticatorComponent);
   }
+}
+
+export interface userDocument {
+  publicName: string;
+  description: string;
 }
