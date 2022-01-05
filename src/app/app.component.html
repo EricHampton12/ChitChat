@@ -7,6 +7,7 @@
             <div *ngIf="!loggedIn()" (click)="onLoginClick()"
             style="font-size: 1.5em;" class="nav-bar-items">Login</div>
             <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="nav-bar-items">Logout</div>
+            <!--<div *ngIf="loggedIn() && userHasProfile" class="nav-bar-items"> Hello, {{userDocument.publicName}}</div>-->
         </div>
     </div>
 </div>

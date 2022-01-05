@@ -3,6 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from 'src/app/tools/authenticator/authenticator.component';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/FirebaseTSAuth';
 import { Router } from '@angular/router';
+//import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'ChitChat';
   auth = new FirebaseTSAuth();
-
+  userHasProfile:boolean = false;
+  //userDocument!: userDocument;
+  //isLoggedIn: boolean = false;
 constructor(private loginSheet: MatBottomSheet,
   private router: Router){
   this.auth.listenToSignInStateChanges(
@@ -26,12 +29,17 @@ constructor(private loginSheet: MatBottomSheet,
           whenSignedOut: user => {
           },
 
-          // whenSignedInAndEmailNotVerified: user => {
-          //   this.router.navigate(["emailVerification"])
-          // },
+          whenSignedInAndEmailNotVerified: user => {
+            this.userHasProfile=false;
+             this.router.navigate(["emailVerification"]);
+         },
 
           whenSignedInAndEmailVerified: user => {
-
+            let myuser = user; 
+            if(!this.userHasProfile)
+              this.router.navigate(["createprofile"]);
+            else
+              this.router.navigate(["postfeed"]);
           },
 
           whenChanged: user => {
@@ -54,4 +62,19 @@ loggedIn() {
   onLoginClick() {
     this.loginSheet.open(AuthenticatorComponent);
   }
+  // getUserProfile(){
+  //   this.fireStore.listenToDocument(
+  //     {
+  //       name: "Getting Documnets",
+  //       path: ["Users"],
+  //       onUpdate: (result) => {
+  //         this.userDocument = <userDocument>result.data();
+
+  //         this.userHasProfile = result.exists;
+  //       }
+  //     }
+  //   );
+  // }
 }
+
+
