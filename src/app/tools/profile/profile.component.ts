@@ -23,10 +23,8 @@ export class ProfileComponent implements OnInit {
 
   onContinueClick(
     nameInput: HTMLInputElement,
-    descriptionInput: HTMLInputElement
   ) {
     let name = nameInput.value;
-    let description = descriptionInput.value;
     this.firestore.create(
       {
         path: ["Users"],
@@ -36,7 +34,6 @@ export class ProfileComponent implements OnInit {
         onComplete: (docId) => {
           alert("profile Created");
           nameInput.value = "";
-          descriptionInput.value = "";
         },
         onFail: (err) => {
 

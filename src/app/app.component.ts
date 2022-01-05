@@ -51,7 +51,7 @@ constructor(private loginSheet: MatBottomSheet,
     this.fireStore.listenToDocument(
       {
         name: "Getting Documnets",
-        path: ["Users", this.auth.getAuth().currentUser.uid],
+        path: ["Users"],
         onUpdate: (result) => {
           this.userDocument = <userDocument>result.data();
 
