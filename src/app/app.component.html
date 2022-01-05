@@ -4,12 +4,13 @@
             <div style="font-size: 1.5em;" class="nav-bar-items">ChitChat</div>
         </div>
         <div id="nav-bar-right">
-            <div (click)="onLoginClick()"
+            <div *ngIf="!loggedIn()" (Click)="onLoginClick()"
             style="font-size: 1.5em;" class="nav-bar-items">Login</div>
+            <div *ngIf="loggedIn()" (Click)="onLogoutClick()" class="nav-bar-items">Logout</div>
         </div>
     </div>
 </div>
 
 <router-outlet></router-outlet>
 
-<app-profile></app-profile>
+<app-profile [show]="loggedIn() && !userHasProfile"></app-profile>
