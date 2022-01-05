@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @input() show:boolean;
 
-  constructor() { }
+  firestore: FirebaseTSFirestore;
+  auth: FirebaseTSAuth;
+
+  constructor() {
+    this.firestore = new FirebaseTSFirestore();
+    this.auth = new FirebaseTSAuth();
+  }
 
   ngOnInit(): void {
+  }
+
+  onContinueClick(
+    nameInput: HTMLInputElement,
+    descriptionInput: HTMLInputElement
+  ) {
+    let name = nameInput.value;
+    let description = descriptionInput.value;
+    this.firestore.create(
+      {
+        path: ["Users", this.auth.getAuth().currentUser.uid],
+        data: {
+
+        },
+        onComplete: (docId) => {
+          alert("profile Created");
+          nameInput.value = "";
+          descriptionInput.value = "";
+        },
+        onFail: (err) => {
+
+        }
+      }
+    );
   }
 
 }

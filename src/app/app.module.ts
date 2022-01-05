@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { environment } from 'src/environments/environment';
-import { HomeComponent } from './pages/post-feed/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -16,6 +16,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCard } from '@angular/material/card';
 import { MatCardActions } from '@angular/material/card';
+import { MatCardHeader } from '@angular/material/card';
+import { MatCardTitle } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { RouterOutlet } from '@angular/router';
+
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { ProfileComponent } from './tools/profile/profile.component';
 @NgModule({
@@ -35,7 +40,11 @@ import { ProfileComponent } from './tools/profile/profile.component';
     MatDialogModule,
     MatIconModule,
     MatCard,
-    MatCardActions
+    MatCardActions,
+    MatCardHeader,
+    MatCardTitle,
+    RouterOutlet,
+    MatIcon
   ],
   providers: [],
   bootstrap: [AppComponent]

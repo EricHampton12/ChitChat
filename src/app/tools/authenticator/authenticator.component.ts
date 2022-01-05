@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/FirebaseTSAuth';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-authenticator',
@@ -11,12 +12,49 @@ state = AuthenticatorCompState.LOGIN;
 firebasetsAuth: FirebaseTSAuth;
 
 
-  constructor() {
+  constructor(private bottomSheetRef: MatBottomSheetRef) {
     this.firebasetsAuth = new FirebaseTSAuth();
    }
 
   ngOnInit(): void {
 
+  }
+
+  onResetClick(resetEmail: HTMLInputElement){
+    let email = resetEmail.value;
+    if(this.isNotEmpty(email)) {
+      this.firebasetsAuth.sendPasswordResetEmail(
+        {
+          email: email,
+          onComplete: (err) => {
+            this.bottomSheetRef.dismiss();
+          }
+        }
+      );
+    }
+  }
+
+  onLogin(
+    loginEmail: HTMLInputElement,
+    loginPassword: HTMLInputElement
+  ) {
+    let email = loginEmail.value;
+    let password = loginPassword.value;
+
+    if(this.isNotEmpty(email) && this.isNotEmpty(password)) {
+      this.firebasetsAuth.signInWith(
+        {
+          email: "",
+          password: "",
+          onComplete: (uc) => {
+            this.bottomSheetRef.dismiss();
+          },
+          onFail: (err) => {
+            alert(err);
+          }
+        }
+      );
+    }
   }
 
   onRegisterClick(
@@ -40,10 +78,7 @@ firebasetsAuth: FirebaseTSAuth;
           email: email,
           password: password,
           onComplete: (uc) => {
-            alert("Account Created");
-            registerEmail.value = "";
-            registerPassword.value = "";
-            registerConfirmPassword.value = "";
+            this.bottomSheetRef.dismiss();
           },
           onFail: (err) => {
             alert("Failed to create the account")
